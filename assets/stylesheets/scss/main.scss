@@ -1,0 +1,177 @@
+@import '../../../bower_components/bourbon/app/assets/stylesheets/bourbon';
+$gutter: 0em;
+@import '../../../bower_components/neat/app/assets/stylesheets/neat';
+
+
+/*============================
+MIXINS
+=============================*/
+
+/*============================
+NEAT MEDIA QUERIES
+=============================*/
+
+$large-screen: new-breakpoint(min-width 490px);
+
+$mid-screen: new-breakpoint(min-width 375px max-width 489px);
+
+
+
+/*============================
+FONTS & COLORS
+=============================*/
+
+$casing-color: rgba(6, 185, 185, 0.25);
+$display-digit-color: rgb(9, 5, 3);
+$display-color: rgb(224, 224, 224);
+$button-operator-color: rgb(0, 150, 150);
+$button-number-color: rgb(249, 246, 246);
+$button-misc-color: rgb(255, 117, 32);
+$button-offset-color: rgba(116, 116, 116, 1);
+
+$header-font: 'Nova Square', sans-serif;
+
+/*============================
+UNIVERSAL
+=============================*/
+
+* {
+  -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+         box-sizing: border-box;
+  outline: none;
+}
+
+
+/*============================
+CLEARFIX
+=============================*/
+
+/*============================
+BODY
+=============================*/
+
+html,
+body {
+  height: 100%;
+}
+
+.main-container {
+  @include outer-container(569px);
+  background-color: $casing-color;
+  border: 1px solid rgb(26, 23, 17);
+  border-bottom-left-radius: 0.6em;
+  border-bottom-right-radius: 0.6em;
+  margin: 0 auto;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+
+/*============================
+HEADER
+=============================*/
+
+.calculator-label {
+  background: $display-color;
+  background: linear-gradient(to right, rgb(6, 185, 185), $casing-color, $button-misc-color);
+  line-height: 1.5em;
+  letter-spacing: 0.3em;
+  font-family: $header-font;
+  padding-left: 0.5em;
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  border-bottom: 1px solid rgb(26, 23, 17);
+}
+
+.calculator-label {
+  @include media($large-screen) {
+    letter-spacing: 0.9em;
+  }
+}
+
+.calculator-label {
+  @include media($mid-screen) {
+    letter-spacing: 0.6em;
+  }
+}
+
+/*============================
+DISPLAY
+=============================*/
+.display {
+  background-color: $display-color;
+  border: 1px solid rgb(26, 23, 17);
+  margin: 0.3em;
+  border-radius: 0.5em;
+}
+
+.display-digits {
+  margin: 0.5em 1em;
+  color: $display-digit-color;
+  font-size: 3em;
+  font-family: $monospace;
+  text-align: right;
+}
+
+/*============================
+BUTTONS
+=============================*/
+
+.input {
+  @include span-columns(12);
+}
+
+.button {
+  @include span-columns(3);
+  height: 3em;
+  border: 1px solid rgb(26, 23, 17);
+  border-radius: 0.3em;
+  font-family: $lucida-grande;
+  -webkit-box-shadow: inset 0 0 25px 5px rgba(0, 0, 0, .7);
+  font-size: 1.5em;
+  line-height: 2em;
+  font-weight: bolder;
+  text-align: center;
+  text-shadow: 0px 2px 2px gray;
+  transition-property: -webkit-box-shadow;
+  transition-timing-function: linear;
+}
+
+.button:hover {
+  -webkit-box-shadow: inset 0 0 25px 5px rgba(0, 0, 0, .9);}
+
+.button:active {
+    /*background: white;*/
+    position: relative;
+    top: 2px;
+}
+
+.button-wide {
+  @include span-columns(6);
+}
+
+.button-number,
+#button-decimal {
+  background-color: $button-number-color;
+}
+
+.button-misc {
+  background-color: $button-misc-color;
+  text-shadow: 1px 1px 2px gray;
+}
+
+.button-operator {
+  color: #fff;
+  text-shadow: 1px 1px 2px black;
+  background-color: $button-operator-color;
+}
+
+#button-equal {
+  color: #fff;
+  text-shadow: 1px 1px 2px black;
+  background-color: $button-operator-color;
+}
