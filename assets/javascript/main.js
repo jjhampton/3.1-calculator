@@ -15,8 +15,8 @@ var init = function () {
 
   var buttonPressedLast; //Stores value of last-pressed button --*** CHANGE TO OBJECT PROPERTY***
   var pendingOperation; //Stores value of last pressed operator button
-  var lastCalculatedInputvalue; //Stores last number value calculated
-  var operationIfEqualsPressedConsecutive; //Stored operation to execute again if equals pressed multiple times in a row
+  var lastCalculatedInputvalue; //Stores last number value calculated for later use
+
 
   /*var wasNumberPressedLast = false;
   var wasDecimalPressedLast = false;
@@ -42,7 +42,7 @@ var init = function () {
     $displayArea.innerText = displayedValue;
   };
 
-  //Function that sets value of calculation value.  Parameter shouldConcat is boolean determining whether or not to concatenate or replace the existing displayedValue.
+  //Function that sets value of calculation value.  Parameter inputValue is used in arithmetic with pendingOperation to generate new calculation value, or when no operation needed, to replace calculation value.
   var setCalculation = function(inputValue) {
     switch (pendingOperation) {
       case "+":
@@ -57,10 +57,11 @@ var init = function () {
       case "/":
         calculation /= inputValue;
         break;
+      case "replace":
+        calculation = inputValue;
+        break;
     }
     lastCalculatedInputValue = inputValue;
-    operationIfEqualsPressedConsecutive = pendingOperation;
-    pendingOperation = undefined;
   };
 
   //Event handler for clicked number button
@@ -114,7 +115,6 @@ var init = function () {
     console.log(text + " CLICKED");
 
     if (buttonPressedLast === "equals") {
-      pendingOperation = operationIfEqualsPressedConsecutive;
       setCalculation(lastCalculatedInputValue);
     }
     setDisplayArea(calculation, false);
@@ -138,6 +138,30 @@ var init = function () {
 
     buttonPressedLast = "clear";
     console.log("calculation is: " + calculation);
+  };
+
+  var toggleSignPressed = function(event) {
+    var button = event.target;
+    var text = button.textContent;
+    console.log(text + " CLICKED");
+
+    setDisplayArea(displayedValue * -1, false);
+    setCalculation(displayedValue * 2);
+
+    console.log("calculation is: " + calculation);
+  };
+
+  var percentPressed = function(event) {
+    var button = event.target;
+    var text = button.textContent;
+    var numberAsPercent = lastCalculatedInputvalue * 0.01;
+    console.log(text + " CLICKED");
+
+    if (buttonPressedLast === "number") {
+      setDisplayArea(numberAsPercent);
+      setCalculation(numberAsPercent, "replace");
+    }
+
   };
 
   // Using querySelector to assign variables to DOM elements
