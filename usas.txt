@@ -27,6 +27,14 @@ When I click on Equals:
   - Given that equals was pressed last
     - Concat last operator and # onto calculation and calculate it
 
+When I click on Decimal:
+  - Given that number was pressed last, OR upon startup/after clear:
+    - display: concat decimal (text) to currently displayed value
+    - calculation: pending operation: * / set calculation(displayedValue * 0.01)
+  - Given that operator was pressed last:
+      - display: replace with "0."
+      - calculation: 
+
 
 When I click on Percent:
   - Given that number was pressed last

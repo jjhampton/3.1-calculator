@@ -151,6 +151,13 @@ var init = function () {
     console.log("calculation is: " + calculation);
   };
 
+  var decimalPressed = function(event) {
+    var button = event.target;
+    var text = button.textContent;
+
+    console.log("calculation is: " + calculation);
+  };
+
   var percentPressed = function(event) {
     var button = event.target;
     var text = button.textContent;
