@@ -1,5 +1,5 @@
 When I click on Number:
-  - Given I have not pressed decimal || I have not pressed operator:
+  - NORMAL - Given I have not pressed decimal || I have not pressed operator:
     - # appears on display
     - # value added to calculation
   - Given I have pressed decimal:

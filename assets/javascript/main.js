@@ -4,24 +4,57 @@
 var init = function () {
 
   //Declare local variables
-    var equalsButton; //for querySelector
-    var clearButton; //for querySelector
-    var toggleSignButton; // for querySelector
-    var displayArea; //for querySelector
-    var decimalButton; //for querySelector
-    var percentButton;//for querySelector
-    var calculation = []; //Current calculation
-    var wasNumberPressedLast = false;
-    var wasDecimalPressedLast = false;
-    var wasOperatorPressedLast; //not currently used, may need in future
+  var equalsButton; //for querySelector
+  var clearButton; //for querySelector
+  var toggleSignButton; // for querySelector
+  var decimalButton; //for querySelector
+  var percentButton;//for querySelector
+  var $displayArea; //for querySelector, property will be modified by setDisplayArea function
+  var calculation = 0; //Number storing result of current calculation
+  var displayedValue; //String storing current display value
 
-    // Using querySelector to assign variables to DOM elements
-    equalsButton = document.querySelector("#button-equal");
-    clearButton = document.querySelector("#button-clear");
-    displayArea = document.querySelector(".display-digits");
-    toggleSignButton = document.querySelector("#button-toggle-sign");
-    decimalButton = document.querySelector("#button-decimal");
-    percentButton = document.querySelector("#button-percent");
+  /*var wasNumberPressedLast = false;
+  var wasDecimalPressedLast = false;
+  var wasOperatorPressedLast; //not currently used, may need in future */
+
+  // Using querySelector to assign variables to DOM elements
+  equalsButton = document.querySelector("#button-equal");
+  clearButton = document.querySelector("#button-clear");
+  toggleSignButton = document.querySelector("#button-toggle-sign");
+  decimalButton = document.querySelector("#button-decimal");
+  percentButton = document.querySelector("#button-percent");
+  $displayArea = document.querySelector(".display-digits");
+
+
+  //Function that sets value of calculator display area.
+  var setDisplayArea = function(inputValue) {
+    var displayedValue = inputValue;
+    $displayArea.innerText = displayedValue;
+  };
+
+  var setCalculation = function(inputValue) {
+    calculation += inputValue;
+  };
+
+  //Event handler for clicked number button
+  var numberPressed = function(event) {
+    var button = event.target;
+    var textString = button.textContent;
+    var textNumber = Number(button.textContent);
+    console.log(textString + " CLICKED");
+
+    setDisplayArea(textString);
+    setCalculation(textNumber);
+    console.log("calculation is: " + calculation);
+  };
+
+  // Using querySelector to assign variables to DOM elements
+  equalsButton = document.querySelector("#button-equal");
+  clearButton = document.querySelector("#button-clear");
+  displayArea = document.querySelector(".display-digits");
+  toggleSignButton = document.querySelector("#button-toggle-sign");
+  decimalButton = document.querySelector("#button-decimal");
+  percentButton = document.querySelector("#button-percent");
 
 
 
