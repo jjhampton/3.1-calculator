@@ -15,6 +15,8 @@ var init = function () {
 
   var buttonPressedLast; //Stores value of last-pressed button --*** CHANGE TO OBJECT PROPERTY***
   var pendingOperation; //Stores value of last pressed operator button
+  var lastCalculatedInputvalue; //Stores last number value calculated
+  var operationIfEqualsPressedConsecutive; //Stored operation to execute again if equals pressed multiple times in a row
 
   /*var wasNumberPressedLast = false;
   var wasDecimalPressedLast = false;
@@ -56,6 +58,8 @@ var init = function () {
         calculation /= inputValue;
         break;
     }
+    lastCalculatedInputValue = inputValue;
+    operationIfEqualsPressedConsecutive = pendingOperation;
     pendingOperation = undefined;
   };
 
@@ -68,6 +72,7 @@ var init = function () {
 
     switch (buttonPressedLast)  {
       case undefined:
+        pendingOperation = "+";
         setDisplayArea(textString, false);
         setCalculation(textNumber);
         break;
@@ -106,6 +111,12 @@ var init = function () {
     var button = event.target;
     var text = button.textContent;
     console.log(text + " CLICKED");
+
+    if (buttonPressedLast === "equals") {
+      pendingOperation = operationIfEqualsPressedConsecutive;
+      setCalculation(lastCalculatedInputValue);
+    }
+    setDisplayArea(calculation, false);
 
     buttonPressedLast = "equals";
     console.log("calculation is: " + calculation);
