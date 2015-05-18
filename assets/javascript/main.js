@@ -72,6 +72,7 @@ var init = function () {
 
     switch (buttonPressedLast)  {
       case undefined:
+      case "clear":
         pendingOperation = "+";
         setDisplayArea(textString, false);
         setCalculation(textNumber);
@@ -96,7 +97,7 @@ var init = function () {
   //Event handler for clicked operator button.  Queues pressed operator value into pendingOperation variable.
   var operatorPressed = function(event) {
     var button = event.target;
-    var textString = button.textContent;
+    var textString = button.dataset.operator;
     var textNumber = Number(button.textContent);
     console.log(textString + " CLICKED");
 
@@ -119,6 +120,23 @@ var init = function () {
     setDisplayArea(calculation, false);
 
     buttonPressedLast = "equals";
+    console.log("calculation is: " + calculation);
+  };
+
+  //Event handler that resets the calculation and calculator display to zero
+  var clearPressed = function(event) {
+    var button = event.target;
+    var text = button.textContent;
+    console.log(text + " CLICKED");
+
+    calculation = 0;
+    setDisplayArea(0, false);
+    buttonPressedLast = 0;
+    pendingOperation = undefined;
+    lastCalculatedInputvalue = undefined;
+    operationIfEqualsPressedConsecutive = undefined;
+
+    buttonPressedLast = "clear";
     console.log("calculation is: " + calculation);
   };
 
