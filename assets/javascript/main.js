@@ -155,6 +155,10 @@ var init = function () {
     var button = event.target;
     var text = button.textContent;
 
+    if (buttonPressedLast === "number" || buttonPressedLast === undefined) {
+
+    }
+
     console.log("calculation is: " + calculation);
   };
 
