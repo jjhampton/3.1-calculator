@@ -4,10 +4,11 @@ When I click on Number:
     - # value added to calculation
   - Given I have pressed decimal:
     - # is concat. to end of currently displayed #
+    - *** ADD additional
   - Given I have pressed operator:
     - # appears on display
     - Given the display/calculation is 0 (startup)
-      - The # is added to the calculation after the queued operator
+      - The # is added to the calculation after the queued operator (***ADD)
 
 When I click on Operator:
   - In calculation, queue that operator to operate on #-displayed and the #-next-clicked

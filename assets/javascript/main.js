@@ -11,7 +11,10 @@ var init = function () {
   var percentButton;//for querySelector
   var $displayArea; //for querySelector, property will be modified by setDisplayArea function
   var calculation = 0; //Number storing result of current calculation
-  var displayedValue; //String storing current display value
+  var displayedValue = 0; //String storing current display value
+
+  var buttonPressedLast; //Stores value of last-pressed button
+  var pendingOperation; //Stores value of last pressed operator button
 
   /*var wasNumberPressedLast = false;
   var wasDecimalPressedLast = false;
@@ -26,14 +29,33 @@ var init = function () {
   $displayArea = document.querySelector(".display-digits");
 
 
-  //Function that sets value of calculator display area.
-  var setDisplayArea = function(inputValue) {
-    var displayedValue = inputValue;
+  //Function that sets value of calculator display area.  Parameter shouldConcat is boolean determining whether or not to concatenate or replace the existing displayedValue.
+  var setDisplayArea = function(inputValue, shouldConcat) {
+    if (shouldConcat) {
+      displayedValue += inputValue;
+    }
+    else {
+      displayedValue = inputValue;
+    }
     $displayArea.innerText = displayedValue;
   };
 
+  //Function that sets value of calculation value.  Parameter shouldConcat is boolean determining whether or not to concatenate or replace the existing displayedValue.
   var setCalculation = function(inputValue) {
-    calculation += inputValue;
+    switch (pendingOperation) {
+      case "+":
+        calculation += inputValue;
+        break;
+      case "-":
+        calculation -= inputValue;
+        break;
+      case "*":
+        calculation *= inputValue;
+        break;
+      case "/":
+        calculation /= inputValue;
+        break;
+    }
   };
 
   //Event handler for clicked number button
@@ -43,8 +65,25 @@ var init = function () {
     var textNumber = Number(button.textContent);
     console.log(textString + " CLICKED");
 
-    setDisplayArea(textString);
-    setCalculation(textNumber);
+    switch (buttonPressedLast)  {
+      case undefined:
+        setDisplayArea(textString, false);
+        setCalculation(textNumber);
+        break;
+      case "number":
+        setDisplayArea(textString, true);
+        setCalculation(textNumber);
+        break;
+      case "decimal":
+        setDisplayArea(textString, true);
+        setCalculation(textNumber);
+        break;
+      case "operator":
+        setDisplayArea(textString, false);
+        setCalculation(textNumber);
+        break;
+      }
+    buttonPressedLast = "number";
     console.log("calculation is: " + calculation);
   };
 
