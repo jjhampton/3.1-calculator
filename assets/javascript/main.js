@@ -88,7 +88,7 @@ var init = function () {
     console.log("calculation is: " + calculation);
   };
 
-  //Event handler for clicked operator button
+  //Event handler for clicked operator button.  Queues pressed operator value into pendingOperation variable.
   var operatorPressed = function(event) {
     var button = event.target;
     var textString = button.textContent;
@@ -98,6 +98,16 @@ var init = function () {
     pendingOperation = textString;
 
     buttonPressedLast = "operator";
+    console.log("calculation is: " + calculation);
+  };
+
+  //Event handler for equals button.
+  var equalsPressed = function(event) {
+    var button = event.target;
+    var text = button.textContent;
+    console.log(text + " CLICKED");
+
+    buttonPressedLast = "equals";
     console.log("calculation is: " + calculation);
   };
 
@@ -120,7 +130,7 @@ var init = function () {
     element.addEventListener('click', operatorPressed);}, false);
 
   // Bind event listeners to their buttons
-  equalsButton.addEventListener('click', equalPressed, false);
+  equalsButton.addEventListener('click', equalsPressed, false);
 
   clearButton.addEventListener('click', clearPressed, false);
 
