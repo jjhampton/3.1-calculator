@@ -12,7 +12,7 @@ When I click on Number:
 
 When I click on Operator:
   - In calculation, queue that operator to operate on #-displayed and the #-next-clicked
-  - Given that I have queued a calculation w/ >= 2 number values:
+  - Given that I have queued a calculation w/ >= 2 number values: **ADD***
     - Current calculation value appears on display
       (Only if Order-Ops precedence is equal)
 

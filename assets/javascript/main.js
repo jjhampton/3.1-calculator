@@ -13,7 +13,7 @@ var init = function () {
   var calculation = 0; //Number storing result of current calculation
   var displayedValue = 0; //String storing current display value
 
-  var buttonPressedLast; //Stores value of last-pressed button
+  var buttonPressedLast; //Stores value of last-pressed button --*** CHANGE TO OBJECT PROPERTY***
   var pendingOperation; //Stores value of last pressed operator button
 
   /*var wasNumberPressedLast = false;
@@ -56,6 +56,7 @@ var init = function () {
         calculation /= inputValue;
         break;
     }
+    pendingOperation = undefined;
   };
 
   //Event handler for clicked number button
@@ -84,6 +85,19 @@ var init = function () {
         break;
       }
     buttonPressedLast = "number";
+    console.log("calculation is: " + calculation);
+  };
+
+  //Event handler for clicked operator button
+  var operatorPressed = function(event) {
+    var button = event.target;
+    var textString = button.textContent;
+    var textNumber = Number(button.textContent);
+    console.log(textString + " CLICKED");
+
+    pendingOperation = textString;
+
+    buttonPressedLast = "operator";
     console.log("calculation is: " + calculation);
   };
 
