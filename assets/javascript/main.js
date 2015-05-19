@@ -102,7 +102,7 @@ var init = function () {
 
       }
     buttonPressedLast = "number";
-    console.log("calculation is: " + calculation + "and its type is", typeof(calculation));
+    console.log("calculation is: " + calculation + " and its type is ", typeof(calculation));
   };
 
   //Event handler for clicked operator button.  Queues pressed operator value into pendingOperation variable.
@@ -115,7 +115,7 @@ var init = function () {
     pendingOperation = textString;
 
     buttonPressedLast = "operator";
-    console.log("calculation is: " + calculation + "and its type is", typeof(calculation));
+    console.log("calculation is: " + calculation + " and its type is ", typeof(calculation));
   };
 
   //Event handler for equals button.
@@ -130,7 +130,7 @@ var init = function () {
     setDisplayArea(calculation, false);
 
     buttonPressedLast = "equals";
-    console.log("calculation is: " + calculation + "and its type is", typeof(calculation));
+    console.log("calculation is: " + calculation + " and its type is ", typeof(calculation));
   };
 
   //Event handler that resets the calculation and calculator display to zero
@@ -147,7 +147,7 @@ var init = function () {
     operationIfEqualsPressedConsecutive = undefined;
 
     buttonPressedLast = "clear";
-    console.log("calculation is: " + calculation + "and its type is", typeof(calculation));
+    console.log("calculation is: " + calculation + " and its type is ",  typeof(calculation));
   };
 
   var toggleSignPressed = function(event) {
@@ -158,7 +158,7 @@ var init = function () {
     setDisplayArea(displayedValue * -1, false);
     setCalculation(displayedValue * 2);
 
-    console.log("calculation is: " + calculation + "and its type is", typeof(calculation));
+    console.log("calculation is: " + calculation + " and its type is ", typeof(calculation));
   };
 
   var decimalPressed = function(event) {
@@ -179,7 +179,7 @@ var init = function () {
       buttonPressedLast = "decimalAfterOperator";
     }
 
-    console.log("calculation is: " + calculation + "and its type is", typeof(calculation));
+    console.log("calculation is: " + calculation + " and its type is ", typeof(calculation));
   };
 
   var percentPressed = function(event) {
@@ -195,7 +195,7 @@ var init = function () {
     }
 
     buttonPressedLast = "clear";
-    console.log("calculation is: " + calculation + "and its type is", typeof(calculation));
+    console.log("calculation is: " + calculation + " and its type is ", typeof(calculation));
   };
 
   // Loop over every element in document. Finds every element w. matching CSS class and binds event listener to 'click' event on that button.  When element is clicked, function alertButtonValue is called.
