@@ -33,7 +33,7 @@ When I click on Decimal:
     - calculation: pending operation: * / set calculation(displayedValue * 0.01)
   - Given that operator was pressed last:
       - display: replace with "0."
-      - calculation: 
+      - calculation:
 
 
 When I click on Percent:
