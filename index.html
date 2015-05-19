@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://fonts.googleapis.com/css?family=Nova+Square" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="assets/stylesheets/css/main.css">
+    <title>Calculate This</title>
+  </head>
+  <body>
+    <div class="main-container">
+      <header>
+        <p class="calculator-label"> Calculate This</p>
+      </header>
+      <section class="display">
+        <p class="display-digits">0</p>
+      </section>
+      <section class="input">
+        <button class="button button-misc" id="button-clear">AC</button>
+        <button class="button button-misc" id="button-toggle-sign" data-operator="3">+/-</button>
+        <button class="button button-misc" id="button-percent">%</button>
+        <button class="button button-operator" data-operator="/">&#247;</button>
+        <button class="button button-number">7</button>
+        <button class="button button-number">8</button>
+        <button class="button button-number">9</button>
+        <button class="button button-operator" data-operator="*">&#215;</button>
+        <button class="button button-number">4</button>
+        <button class="button button-number">5</button>
+        <button class="button button-number">6</button>
+        <button class="button button-operator" data-operator="-">&#8722;</button>
+        <button class="button button-number">1</button>
+        <button class="button button-number">2</button>
+        <button class="button button-number">3</button>
+        <button class="button button-operator" data-operator="+">+</button>
+        <button class="button button-number button-wide">0</button>
+        <button class="button" id="button-decimal">.</button>
+        <button id="button-equal" class="button">=</button>
+      </section>
+    </div>
+    <script type="text/javascript" src="assets/javascript/main.js"></script>
+  </body>
+</html>

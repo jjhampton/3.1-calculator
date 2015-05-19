@@ -1,0 +1,48 @@
+When I click on Number:
+  - NORMAL - Given I have not pressed decimal || I have not pressed operator:
+    - # appears on display
+    - # value added to calculation
+  - Given I have pressed decimal:
+    - # is concat. to end of currently displayed #
+    - *** ADD additional
+  - Given I have pressed operator:
+    - # appears on display
+    - Given the display/calculation is 0 (startup)
+      - The # is added to the calculation after the queued operator (***ADD)
+
+When I click on Operator:
+  - In calculation, queue that operator to operate on #-displayed and the #-next-clicked
+  - Given that I have queued a calculation w/ >= 2 number values: **ADD***
+    - Current calculation value appears on display
+      (Only if Order-Ops precedence is equal)
+
+When I click on AC:
+  - Calculation is set to 0
+  - Display is set to 0
+
+When I click on Equals:
+  - Given that equals was not pressed last
+    - Queued operation is calculated
+    - Display is set to calculation
+  - Given that equals was pressed last
+    - Concat last operator and # onto calculation and calculate it
+
+When I click on Decimal:
+  - Given that number was pressed last, OR upon startup/after clear:
+    - display: concat decimal (text) to currently displayed value
+    - calculation: pending operation: * / set calculation(displayedValue * 0.01)
+  - Given that operator was pressed last:
+      - display: replace with "0."
+      - calculation:
+
+
+When I click on Percent:
+  - Given that number was pressed last
+    - (numberPressedLast * 0.01) displayed to screen
+    - (numberPressedLast * 0.01) value added to calculation
+  - Given that operator was pressed last
+    - (numberPressedLast) * (numberPressedLast * 0.01) displayed to screen
+    - (numberPressedLast) * (numberPressedLast * 0.01) value added to calculation
+
+When I click on +/-:
+    - numberPressedLast = numberPressedLast * -1
