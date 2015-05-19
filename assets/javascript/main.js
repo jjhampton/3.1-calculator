@@ -60,9 +60,8 @@ var init = function () {
       case "replace":
         calculation = inputValue;
         break;
-      //case "decimal-addon":
-        //calculation = calculation + inputValue;
     }
+
     lastCalculatedInputValue = inputValue;
     console.log("LCIV is: " + lastCalculatedInputValue);
   };
@@ -96,9 +95,11 @@ var init = function () {
         setCalculation(textNumber);
         break;
       case "decimalAfterOperator":
-      setDisplayArea(textString, true);
-      setCalculation(Number(displayedValue));
-      break;
+        setDisplayArea(textString, true);
+        setCalculation(Number(displayedValue));
+        break;
+      case "percent":
+
       }
     buttonPressedLast = "number";
     console.log("calculation is: " + calculation);
@@ -165,7 +166,6 @@ var init = function () {
     var text = button.textContent;
     console.log(text + " CLICKED");
 
-
     if (buttonPressedLast === "number" || buttonPressedLast === undefined) {
       if (displayedValue.indexOf(".") === -1) {
         setDisplayArea(text, true);
@@ -185,14 +185,17 @@ var init = function () {
   var percentPressed = function(event) {
     var button = event.target;
     var text = button.textContent;
-    var numberAsPercent = lastCalculatedInputvalue * 0.01;
+    var numberAsPercent = lastCalculatedInputValue * 0.01;
     console.log(text + " CLICKED");
 
     if (buttonPressedLast === "number") {
-      setDisplayArea(numberAsPercent);
-      setCalculation(numberAsPercent, "replace");
+      setDisplayArea(numberAsPercent, false);
+      pendingOperation =  "*";
+      setCalculation(0.01);
     }
-
+    
+    buttonPressedLast = "clear";
+    console.log("calculation is: " + calculation);
   };
 
   // Loop over every element in document. Finds every element w. matching CSS class and binds event listener to 'click' event on that button.  When element is clicked, function alertButtonValue is called.
